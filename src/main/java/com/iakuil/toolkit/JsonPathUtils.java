@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * 使用Json Path的方式访问JSON
  *
- * <p>读出的值尽量不要有嵌套。</p>
+ * <p>读出的值尽量不要有嵌套。
  *
  * @author Kai
  */
@@ -134,7 +134,7 @@ public class JsonPathUtils {
      *
      * @param json json数据
      * @param path json path
-     * @return Map<String, Object>类型数据
+     * @return Map类型数据
      */
     public static Map<String, Object> readMap(String json, String path) {
         return read(json, path, MAP_TYPE_REF);
@@ -144,6 +144,7 @@ public class JsonPathUtils {
      * 读取为List
      * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。</p>
      *
+     * @param <T>  javabean类型
      * @param json json数据
      * @param path json path
      * @param clazz 期望类型
@@ -159,6 +160,7 @@ public class JsonPathUtils {
      * 读取为Java对象
      * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。</p>
      *
+     * @param <T>  javabean类型
      * @param json json数据
      * @param path json path
      * @param clazz 期望类型

@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Java Bean与Map转换工具
+ * The utility for converting between Java Bean and Map.
  *
- * <p>封装了cglib的{@link BeanMap}</p>
+ * <p>Base on {@link BeanMap} from cglib.
  *
  * @author Kai
  */
@@ -19,8 +19,9 @@ public class BeanMapUtils {
     /**
      * 将map转换为javabean对象
      *
+     * @param <T>  javabean类型
      * @param bean javabean对象
-     * @return Map<String, Object>形式的Map
+     * @return a Map对象
      */
     public static <T> Map<String, Object> beanToMap(T bean) {
         return beanToMap(bean, false);
@@ -29,9 +30,10 @@ public class BeanMapUtils {
     /**
      * 将map转换为javabean对象
      *
+     * @param <T>        javabean类型
      * @param bean       javabean对象
-     * @param ignoreNull 是否忽略空置
-     * @return Map<String, Object>形式的Map
+     * @param ignoreNull 是否忽略空值
+     * @return Map对象
      */
     public static <T> Map<String, Object> beanToMap(T bean, boolean ignoreNull) {
         Map<String, Object> map = new HashMap<>();
@@ -48,6 +50,7 @@ public class BeanMapUtils {
     /**
      * 将map转换为javabean对象
      *
+     * @param <T>  javabean类型
      * @param map  Map数据
      * @param bean javabean对象
      * @return 指定类型的javabean
@@ -61,10 +64,11 @@ public class BeanMapUtils {
     }
 
     /**
-     * 将List<T>转换为List<Map<String, Object>>
+     * 将javabean列表转换为map列表
      *
+     * @param <T>     javabean类型
      * @param objList javabean对象列表
-     * @return Map<String, Object>形式的Map列表
+     * @return Map列表
      */
     public static <T> List<Map<String, Object>> objectsToMaps(List<T> objList) {
         List<Map<String, Object>> list = new ArrayList<>();
@@ -81,8 +85,9 @@ public class BeanMapUtils {
     }
 
     /**
-     * 将List<Map<String,Object>>转换为List<T>
+     * 将map列表转换为javabean列表
      *
+     * @param <T>   javabean类型
      * @param maps  Map数据列表
      * @param clazz 期望的Java类型
      * @return javabean列表

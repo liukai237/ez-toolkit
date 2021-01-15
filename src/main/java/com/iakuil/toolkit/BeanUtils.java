@@ -8,11 +8,11 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 对象属性复制工具
+ * The utility for javabean properties copying.
  *
- * <p>封装了cglib的{@link BeanCopier}</p>
- * <p>效率仅次于Getter/Setter以及Mapstruct。</p>
- * <p>注意：属性名称相同而类型不同的属性不会被拷贝。</p>
+ * <p>Base on {@link BeanCopier} from cglib
+ * <p>效率仅次于Getter/Setter以及Mapstruct。
+ * <p>注意：属性名称相同而类型不同的属性不会被拷贝。
  *
  * @author Kai
  */
@@ -22,8 +22,9 @@ public class BeanUtils {
     /**
      * 对象属性复制
      *
-     * @param from  源对象
-     * @param to 目标类型
+     * @param <T>  javabean类型
+     * @param from 源对象
+     * @param to   目标类型
      * @return 目标类型对象
      */
     public static <T> T copy(Object from, Class<T> to) {
@@ -39,8 +40,9 @@ public class BeanUtils {
     /**
      * 批量对象属性复制
      *
-     * @param from  源对象集合
-     * @param to 目标类型
+     * @param <T>  javabean类型
+     * @param from 源对象集合
+     * @param to   目标类型
      * @return 目标类型对象列表
      */
     public static <T> List<T> copyMany(Collection<?> from, Class<T> to) {
