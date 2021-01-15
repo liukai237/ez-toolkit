@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * 基于Jackson的JSON工具类
+ *
+ * @author Kai
  */
 public class JsonUtils {
     private static final ObjectMapper OBJECT_MAPPER;
@@ -23,6 +25,12 @@ public class JsonUtils {
         OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    /**
+     * javabean转换为JSON
+     *
+     * @param obj javabean对象
+     * @return JSON数据
+     */
     public static String bean2Json(Object obj) {
         if (obj == null) {
             return null;
@@ -38,6 +46,13 @@ public class JsonUtils {
         return result;
     }
 
+    /**
+     * JSON转换为javabean
+     *
+     * @param jsonStr json数据
+     * @param clazz   期望类型
+     * @return 指定类型的javabean
+     */
     public static <T> T json2bean(String jsonStr, Class<T> clazz) {
         if (jsonStr == null || "".equals(jsonStr) || clazz == null) {
             return null;
@@ -54,14 +69,35 @@ public class JsonUtils {
         return result;
     }
 
+    /**
+     * JSON转换为javabean列表
+     *
+     * @param jsonStr json数据
+     * @param clazz   期望类型
+     * @return 指定类型的javabean列表
+     */
     public static <T> List<T> json2List(String jsonStr, Class<T> clazz) {
         return readType(jsonStr, OBJECT_MAPPER.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
     }
 
+    /**
+     * JSON转换为javabean Set
+     *
+     * @param jsonStr json数据
+     * @param clazz   期望类型
+     * @return 指定类型的javabean Set
+     */
     public static <T> List<T> json2Set(String jsonStr, Class<T> clazz) {
         return readType(jsonStr, OBJECT_MAPPER.getTypeFactory().constructCollectionType(HashSet.class, clazz));
     }
 
+    /**
+     * JSON转换为javabean数组
+     *
+     * @param jsonStr json数据
+     * @param clazz   期望类型
+     * @return 指定类型的javabean数组
+     */
     public static <T> List<T> json2Array(String jsonStr, Class<T> clazz) {
         return readType(jsonStr, OBJECT_MAPPER.getTypeFactory().constructArrayType(clazz));
     }

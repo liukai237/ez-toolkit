@@ -51,6 +51,12 @@ public class JsonPathUtils {
 
     /**
      * 为JSON节点赋值
+     *
+     * @param json json数据
+     * @param path json path
+     * @param key  json key
+     * @param value  json value
+     * @return String类型
      */
     public static String put(String json, String path, String key, Object value) {
         return parse(json, path).put(path, key, value).jsonString();
@@ -58,6 +64,11 @@ public class JsonPathUtils {
 
     /**
      * 为JSON数组追加元素
+     *
+     * @param json json数据
+     * @param path json path
+     * @param obj json value
+     * @return String类型
      */
     public static String add(String json, String path, Object obj) {
         return parse(json, path).add(path, obj).jsonString();
@@ -65,6 +76,10 @@ public class JsonPathUtils {
 
     /**
      * 删除JSON节点
+     *
+     * @param json json数据
+     * @param path json path
+     * @return String类型
      */
     public static String del(String json, String path) {
         return parse(json, path).delete(path).jsonString();
@@ -72,6 +87,10 @@ public class JsonPathUtils {
 
     /**
      * 读取为String
+     *
+     * @param json json数据
+     * @param path json path
+     * @return String类型
      */
     public static String readStr(String json, String path) {
         return read(json, path, String.class);
@@ -79,6 +98,10 @@ public class JsonPathUtils {
 
     /**
      * 读取为Long
+     *
+     * @param obj javabean对象
+     * @param path json path
+     * @return Long类型
      */
     public static Long readLong(String obj, String path) {
         return read(obj, path, Long.class);
@@ -86,6 +109,10 @@ public class JsonPathUtils {
 
     /**
      * 读取为Integer
+     *
+     * @param json json数据
+     * @param path json path
+     * @return Integer类型
      */
     public static Integer readInt(String json, String path) {
         return read(json, path, Integer.class);
@@ -93,6 +120,10 @@ public class JsonPathUtils {
 
     /**
      * 读取为Double
+     *
+     * @param obj javabean对象
+     * @param path json path
+     * @return Double类型
      */
     public static Double readDouble(String obj, String path) {
         return read(obj, path, Double.class);
@@ -100,6 +131,10 @@ public class JsonPathUtils {
 
     /**
      * 读取为Map
+     *
+     * @param json json数据
+     * @param path json path
+     * @return Map<String, Object>类型数据
      */
     public static Map<String, Object> readMap(String json, String path) {
         return read(json, path, MAP_TYPE_REF);
@@ -108,6 +143,11 @@ public class JsonPathUtils {
     /**
      * 读取为List
      * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。</p>
+     *
+     * @param json json数据
+     * @param path json path
+     * @param clazz 期望类型
+     * @return 指定类型的javabean列表
      */
     public static <T> List<T> readList(String json, String path, Class<T> clazz) {
         TypeRef<List<T>> typeRef = new TypeRef<List<T>>() {
@@ -118,6 +158,11 @@ public class JsonPathUtils {
     /**
      * 读取为Java对象
      * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。</p>
+     *
+     * @param json json数据
+     * @param path json path
+     * @param clazz 期望类型
+     * @return 指定类型的javabean
      */
     public static <T> T read(String json, String path, Class<T> clazz) {
         return parse(json, path).read(path, clazz);

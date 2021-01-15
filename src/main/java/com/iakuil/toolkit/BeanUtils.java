@@ -21,6 +21,10 @@ public class BeanUtils {
 
     /**
      * 对象属性复制
+     *
+     * @param from  源对象
+     * @param to 目标类型
+     * @return 目标类型对象
      */
     public static <T> T copy(Object from, Class<T> to) {
         if (from == null) {
@@ -34,6 +38,10 @@ public class BeanUtils {
 
     /**
      * 批量对象属性复制
+     *
+     * @param from  源对象集合
+     * @param to 目标类型
+     * @return 目标类型对象列表
      */
     public static <T> List<T> copyMany(Collection<?> from, Class<T> to) {
         if (from == null || from.size() == 0) {

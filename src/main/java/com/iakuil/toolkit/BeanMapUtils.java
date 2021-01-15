@@ -16,12 +16,22 @@ import java.util.Map;
  */
 public class BeanMapUtils {
 
+    /**
+     * 将map转换为javabean对象
+     *
+     * @param bean javabean对象
+     * @return Map<String, Object>形式的Map
+     */
     public static <T> Map<String, Object> beanToMap(T bean) {
         return beanToMap(bean, false);
     }
 
     /**
      * 将map转换为javabean对象
+     *
+     * @param bean       javabean对象
+     * @param ignoreNull 是否忽略空置
+     * @return Map<String, Object>形式的Map
      */
     public static <T> Map<String, Object> beanToMap(T bean, boolean ignoreNull) {
         Map<String, Object> map = new HashMap<>();
@@ -37,6 +47,10 @@ public class BeanMapUtils {
 
     /**
      * 将map转换为javabean对象
+     *
+     * @param map  Map数据
+     * @param bean javabean对象
+     * @return 指定类型的javabean
      */
     public static <T> T mapToBean(Map<String, Object> map, T bean) {
         if (map != null) {
@@ -48,6 +62,9 @@ public class BeanMapUtils {
 
     /**
      * 将List<T>转换为List<Map<String, Object>>
+     *
+     * @param objList javabean对象列表
+     * @return Map<String, Object>形式的Map列表
      */
     public static <T> List<Map<String, Object>> objectsToMaps(List<T> objList) {
         List<Map<String, Object>> list = new ArrayList<>();
@@ -65,6 +82,10 @@ public class BeanMapUtils {
 
     /**
      * 将List<Map<String,Object>>转换为List<T>
+     *
+     * @param maps  Map数据列表
+     * @param clazz 期望的Java类型
+     * @return javabean列表
      */
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
         List<T> list = new ArrayList<>();
