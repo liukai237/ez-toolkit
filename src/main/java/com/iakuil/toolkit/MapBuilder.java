@@ -1,15 +1,13 @@
 package com.iakuil.toolkit;
 
 
-import org.apache.commons.collections4.CollectionUtils;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Map链式Builder
  *
- * <p>配合MyBatis使用，Value为Null、空字符串、空数组、空集合、空Map等时会被过滤掉</p>
+ * <p>Value为Null、空字符串、空数组、空集合、空Map等时会被过滤掉</p>
  */
 public class MapBuilder {
     private Map<String, Object> tmp;
@@ -64,8 +62,26 @@ public class MapBuilder {
             result = true;
         } else if (obj instanceof String) {
             result = ((String) obj).isEmpty();
+        } else if (obj instanceof Collection<?>) {
+            return ((Collection<?>) obj).isEmpty();
+        } else if (obj instanceof Iterable<?>) {
+            Iterable<?> iterable = (Iterable<?>) obj;
+            Iterator<?> iterator = iterable.iterator();
+            return !iterator.hasNext();
+        } else if (obj instanceof Map<?, ?>) {
+            return ((Map<?, ?>) obj).isEmpty();
+        } else if (obj instanceof Object[]) {
+            return ((Object[]) obj).length == 0;
+        } else if (obj instanceof Iterator<?>) {
+            return !((Iterator<?>) obj).hasNext();
+        } else if (obj instanceof Enumeration<?>) {
+            return !((Enumeration<?>) obj).hasMoreElements();
         } else {
-            result = CollectionUtils.sizeIsEmpty(obj);
+            try {
+                return Array.getLength(obj) == 0;
+            } catch (final IllegalArgumentException ex) {
+                throw new IllegalArgumentException("Unsupported object type: " + obj.getClass().getName());
+            }
         }
 
         return result;

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iakuil</groupId>
     <artifactId>ez-toolkit</artifactId>
-    <version>1.0-rc1</version>
+    <version>1.0-rc2</version>
     <name>Easy Tool Kit</name>
     <url>https://github.com/liukai237/ez-toolkit</url>
     <description>Useful tool kit.</description>

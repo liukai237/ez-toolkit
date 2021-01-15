@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * 对象属性复制工具
+ *
+ * <p>封装了cglib的{@link BeanCopier}</p>
  * <p>效率仅次于Getter/Setter以及Mapstruct。</p>
  * <p>注意：属性名称相同而类型不同的属性不会被拷贝。</p>
  *
