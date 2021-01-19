@@ -33,7 +33,7 @@ public class MapBuilder {
     }
 
     /**
-     * 初始化方法
+     * 带初始值的初始化方法
      *
      * @param map 初始化Map数据
      * @return MapBuilder对象

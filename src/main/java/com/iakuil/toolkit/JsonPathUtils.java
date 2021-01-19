@@ -52,14 +52,14 @@ public class JsonPathUtils {
     /**
      * 为JSON节点赋值
      *
-     * @param json json数据
-     * @param path json path
-     * @param key  json key
-     * @param value  json value
+     * @param json  json数据
+     * @param path  json path
+     * @param key   json key
+     * @param value json value
      * @return String类型
      */
     public static String put(String json, String path, String key, Object value) {
-        return parse(json, path).put(path, key, value).jsonString();
+        return parse(json).put(path, key, value).jsonString();
     }
 
     /**
@@ -67,11 +67,11 @@ public class JsonPathUtils {
      *
      * @param json json数据
      * @param path json path
-     * @param obj json value
+     * @param obj  json value
      * @return String类型
      */
     public static String add(String json, String path, Object obj) {
-        return parse(json, path).add(path, obj).jsonString();
+        return parse(json).add(path, obj).jsonString();
     }
 
     /**
@@ -82,7 +82,7 @@ public class JsonPathUtils {
      * @return String类型
      */
     public static String del(String json, String path) {
-        return parse(json, path).delete(path).jsonString();
+        return parse(json).delete(path).jsonString();
     }
 
     /**
@@ -99,7 +99,7 @@ public class JsonPathUtils {
     /**
      * 读取为Long
      *
-     * @param obj javabean对象
+     * @param obj  javabean对象
      * @param path json path
      * @return Long类型
      */
@@ -121,7 +121,7 @@ public class JsonPathUtils {
     /**
      * 读取为Double
      *
-     * @param obj javabean对象
+     * @param obj  javabean对象
      * @param path json path
      * @return Double类型
      */
@@ -142,11 +142,11 @@ public class JsonPathUtils {
 
     /**
      * 读取为List
-     * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。</p>
+     * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。
      *
-     * @param <T>  javabean类型
-     * @param json json数据
-     * @param path json path
+     * @param <T>   javabean类型
+     * @param json  json数据
+     * @param path  json path
      * @param clazz 期望类型
      * @return 指定类型的javabean列表
      */
@@ -158,23 +158,23 @@ public class JsonPathUtils {
 
     /**
      * 读取为Java对象
-     * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。</p>
+     * <p>可以带泛型，但是多层嵌套后泛型无效，会被读取为LinkedHashMap。
      *
-     * @param <T>  javabean类型
-     * @param json json数据
-     * @param path json path
+     * @param <T>   javabean类型
+     * @param json  json数据
+     * @param path  json path
      * @param clazz 期望类型
      * @return 指定类型的javabean
      */
     public static <T> T read(String json, String path, Class<T> clazz) {
-        return parse(json, path).read(path, clazz);
+        return parse(json).read(path, clazz);
     }
 
     private static <T> T read(String json, String path, TypeRef<T> tr) {
-        return parse(json, path).read(path, tr);
+        return parse(json).read(path, tr);
     }
 
-    private static DocumentContext parse(String json, String path) {
+    private static DocumentContext parse(String json) {
         return JsonPath
                 .using(CONFIG)
                 .parse(json);

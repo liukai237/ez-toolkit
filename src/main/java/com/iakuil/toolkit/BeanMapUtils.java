@@ -19,7 +19,7 @@ public class BeanMapUtils {
     /**
      * 将map转换为javabean对象
      *
-     * @param <T>  javabean类型
+     * @param <T>  Map类型
      * @param bean javabean对象
      * @return a Map对象
      */
@@ -30,9 +30,9 @@ public class BeanMapUtils {
     /**
      * 将map转换为javabean对象
      *
-     * @param <T>        javabean类型
+     * @param <T>        Map类型
      * @param bean       javabean对象
-     * @param ignoreNull 是否忽略空值
+     * @param ignoreNull 是否忽略空值，默认false
      * @return Map对象
      */
     public static <T> Map<String, Object> beanToMap(T bean, boolean ignoreNull) {
@@ -41,6 +41,9 @@ public class BeanMapUtils {
             BeanMap beanMap = BeanMap.create(bean);
             for (Object key : beanMap.keySet()) {
                 Object value = beanMap.get(key);
+                if (value == null && ignoreNull) {
+                    continue;
+                }
                 map.put(key + "", value);
             }
         }
