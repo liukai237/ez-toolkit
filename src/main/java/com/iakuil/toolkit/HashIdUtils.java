@@ -32,8 +32,20 @@ public class HashIdUtils {
      * @return a salted unique hash
      */
     public static String encrypt(Long plainid, String salt) {
+        return encrypt(plainid, salt, DEFAULT_HASH_LENGTH);
+    }
+
+    /**
+     * Returns a salted unique hash of the number.
+     *
+     * @param plainid the number to hash
+     * @param salt    the salt of hash
+     * @param length  the length of hash
+     * @return a salted unique hash
+     */
+    public static String encrypt(Long plainid, String salt, int length) {
         Objects.requireNonNull(plainid, "Id must not be empty!");
-        Hashids hashids = new Hashids(ObjectUtils.defaultIfNull(salt, DEFAULT_SALT), DEFAULT_HASH_LENGTH);
+        Hashids hashids = new Hashids(ObjectUtils.defaultIfNull(salt, DEFAULT_SALT), length);
         return hashids.encode(plainid);
     }
 

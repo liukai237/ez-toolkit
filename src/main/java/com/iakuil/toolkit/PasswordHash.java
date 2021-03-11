@@ -28,6 +28,7 @@ package com.iakuil.toolkit;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.math.BigInteger;
@@ -69,8 +70,7 @@ public class PasswordHash {
      * @param password the password to hash
      * @return a salted PBKDF2 hash of the password
      */
-    public static String createHash(char[] password)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static String createHash(char[] password) {
         // Generate a random salt
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_BYTE_SIZE];
@@ -102,7 +102,7 @@ public class PasswordHash {
      * @return true if the password is correct, false if not
      */
     public static boolean validatePassword(char[] password, String correctHash)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+            throws NoSuchAlgorithmException {
         // Decode the hash into its parameters
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[ITERATION_INDEX]);
@@ -142,11 +142,16 @@ public class PasswordHash {
      * @param bytes      the length of the hash to compute in bytes
      * @return the PBDKF2 hash of the password
      */
-    private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes) {
         PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, bytes * 8);
-        SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);
-        return skf.generateSecret(spec).getEncoded();
+        SecretKey secretKey;
+        try {
+            SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);
+            secretKey = skf.generateSecret(spec);
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new IllegalStateException("Occurring an exception during SecretKey generating!", e);
+        }
+        return secretKey.getEncoded();
     }
 
     /**
