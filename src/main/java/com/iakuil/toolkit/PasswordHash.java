@@ -59,8 +59,7 @@ public class PasswordHash {
      * @param password the password to hash
      * @return a salted PBKDF2 hash of the password
      */
-    public static String createHash(String password)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static String createHash(String password) {
         return createHash(password.toCharArray());
     }
 
@@ -89,8 +88,7 @@ public class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(String password, String correctHash)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static boolean validatePassword(String password, String correctHash) {
         return validatePassword(password.toCharArray(), correctHash);
     }
 
@@ -101,8 +99,7 @@ public class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(char[] password, String correctHash)
-            throws NoSuchAlgorithmException {
+    public static boolean validatePassword(char[] password, String correctHash) {
         // Decode the hash into its parameters
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[ITERATION_INDEX]);
