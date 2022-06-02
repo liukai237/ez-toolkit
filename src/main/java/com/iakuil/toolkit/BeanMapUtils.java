@@ -53,6 +53,23 @@ public class BeanMapUtils {
     /**
      * 将map转换为javabean对象
      *
+     * @param <T>   javabean类型
+     * @param map   Map数据
+     * @param clazz 目标类型
+     * @return 指定类型的javabean
+     */
+    public static <T> T mapToBean(Map<String, Object> map, Class<T> clazz) {
+        T target = getInstance(clazz);
+        if (map != null) {
+            BeanMap beanMap = BeanMap.create(target);
+            beanMap.putAll(map);
+        }
+        return target;
+    }
+
+    /**
+     * 将map转换为javabean对象
+     *
      * @param <T>  javabean类型
      * @param map  Map数据
      * @param bean javabean对象
@@ -76,12 +93,8 @@ public class BeanMapUtils {
     public static <T> List<Map<String, Object>> objectsToMaps(List<T> objList) {
         List<Map<String, Object>> list = new ArrayList<>();
         if (objList != null && objList.size() > 0) {
-            Map<String, Object> map;
-            T bean;
-            for (T t : objList) {
-                bean = t;
-                map = beanToMap(bean);
-                list.add(map);
+            for (T obj : objList) {
+                list.add(beanToMap(obj));
             }
         }
         return list;
@@ -98,19 +111,21 @@ public class BeanMapUtils {
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
         List<T> list = new ArrayList<>();
         if (maps != null && maps.size() > 0) {
-            Map<String, Object> map;
-            T bean;
-            for (Map<String, Object> stringObjectMap : maps) {
-                map = stringObjectMap;
-                try {
-                    bean = clazz.newInstance();
-                } catch (InstantiationException | IllegalAccessException e) {
-                    throw new IllegalStateException("Occurring an exception during class instancing!", e);
-                }
-                mapToBean(map, bean);
-                list.add(bean);
+            for (Map<String, Object> objMap : maps) {
+                list.add(mapToBean(objMap, clazz));
             }
         }
         return list;
+    }
+
+    private static <T> T getInstance(Class<T> clazz) {
+        T inst;
+        try {
+            inst = clazz.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new IllegalStateException("Occurring an exception during class instancing!", e);
+        }
+
+        return inst;
     }
 }
