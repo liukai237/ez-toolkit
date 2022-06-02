@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.nullValue;
 
-class BeanUtilsTest {
+public class BeanUtilsTest {
 
     @Test
     void should_copy_non_null_properties() {
@@ -18,6 +18,7 @@ class BeanUtilsTest {
         foo.setName("Harry");
 
         Bar bar = BeanUtils.copy(foo, Bar.class);
+        Bar bar2 = BeanUtils.copy(foo, Bar.class);
         assertThat(foo.getName(), is(bar.getName()));
     }
 
@@ -58,7 +59,7 @@ class BeanUtilsTest {
         assertThat(family, hasSize(2));
     }
 
-    private static class Foo {
+    static class Foo {
         private String name;
         private Integer age;
 
@@ -79,7 +80,7 @@ class BeanUtilsTest {
         }
     }
 
-    private static class Bar {
+    static class Bar {
         private String name;
         private Integer age;
         private String addr;
@@ -109,7 +110,7 @@ class BeanUtilsTest {
         }
     }
 
-    private static class Baz {
+    static class Baz {
         private String name;
         private String age;
 

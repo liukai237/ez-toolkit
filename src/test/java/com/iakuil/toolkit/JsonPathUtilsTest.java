@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class JsonPathUtilsTest {
+public class JsonPathUtilsTest {
 
     @Test
     void should_add_object_to_json_array_suitably() {
@@ -109,7 +109,7 @@ class JsonPathUtilsTest {
         System.out.println();
     }
 
-    private static class Foo {
+    static class Foo {
         private String name;
         private Integer age;
 
