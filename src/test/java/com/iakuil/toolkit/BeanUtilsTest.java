@@ -18,7 +18,6 @@ public class BeanUtilsTest {
         foo.setName("Harry");
 
         Bar bar = BeanUtils.copy(foo, Bar.class);
-        Bar bar2 = BeanUtils.copy(foo, Bar.class);
         assertThat(foo.getName(), is(bar.getName()));
     }
 

@@ -14,6 +14,9 @@ public class HashIdUtils {
     private static final String DEFAULT_SALT = "itsADemo4Hash";
     private static final int DEFAULT_HASH_LENGTH = 8;
 
+    private HashIdUtils() {
+    }
+
     /**
      * Returns a salted unique hash of the number.
      *

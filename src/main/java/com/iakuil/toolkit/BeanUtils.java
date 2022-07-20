@@ -19,6 +19,9 @@ import java.util.List;
 public class BeanUtils {
     private static final MultiKeyMap<Class<?>, BeanCopier> BEAN_TYPE_CACHE = new MultiKeyMap<>();
 
+    private BeanUtils() {
+    }
+
     /**
      * 对象属性复制
      *

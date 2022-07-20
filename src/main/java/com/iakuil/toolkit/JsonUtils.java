@@ -25,6 +25,9 @@ public class JsonUtils {
         OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    private JsonUtils() {
+    }
+
     /**
      * javabean转换为JSON
      *

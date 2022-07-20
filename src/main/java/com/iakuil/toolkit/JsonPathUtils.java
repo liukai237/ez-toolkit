@@ -49,6 +49,9 @@ public class JsonPathUtils {
         CONFIG = Configuration.defaultConfiguration().addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL, Option.SUPPRESS_EXCEPTIONS);
     }
 
+    private JsonPathUtils() {
+    }
+
     /**
      * 为JSON节点赋值
      *

@@ -15,6 +15,8 @@ import java.util.Map;
  * @author Kai
  */
 public class BeanMapUtils {
+    private BeanMapUtils() {
+    }
 
     /**
      * 将map转换为javabean对象
