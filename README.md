@@ -5,5 +5,4 @@
 * Java Bean to JSON
 * Java Bean type convertor
 * Parsing JSON by JSONPath
-* PBKDF2 salted password hashing
 * Hashids
