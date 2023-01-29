@@ -2,13 +2,10 @@ package com.iakuil.toolkit;
 
 import net.sf.cglib.beans.BeanMap;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
- * The utility for converting between Java Bean and Map.
+ * The utility for converting between JavaBean and Map.
  *
  * <p>Base on {@link BeanMap} from cglib.
  *
@@ -19,10 +16,10 @@ public class BeanMapUtils {
     }
 
     /**
-     * 将map转换为javabean对象
+     * 将Map转换为JavaBean对象
      *
      * @param <T>  Map类型
-     * @param bean javabean对象
+     * @param bean JavaBean对象
      * @return a Map对象
      */
     public static <T> Map<String, Object> beanToMap(T bean) {
@@ -30,35 +27,37 @@ public class BeanMapUtils {
     }
 
     /**
-     * 将map转换为javabean对象
+     * 将Map转换为JavaBean对象
      *
      * @param <T>        Map类型
-     * @param bean       javabean对象
+     * @param bean       JavaBean对象
      * @param ignoreNull 是否忽略空值，默认false
      * @return Map对象
      */
     public static <T> Map<String, Object> beanToMap(T bean, boolean ignoreNull) {
+        if (bean == null) {
+            return Collections.emptyMap();
+        }
+
         Map<String, Object> map = new HashMap<>();
-        if (bean != null) {
-            BeanMap beanMap = BeanMap.create(bean);
-            for (Object key : beanMap.keySet()) {
-                Object value = beanMap.get(key);
-                if (value == null && ignoreNull) {
-                    continue;
-                }
-                map.put(key + "", value);
+        BeanMap beanMap = BeanMap.create(bean);
+        for (Object key : beanMap.keySet()) {
+            Object value = beanMap.get(key);
+            if (value == null && ignoreNull) {
+                continue;
             }
+            map.put(key + "", value);
         }
         return map;
     }
 
     /**
-     * 将map转换为javabean对象
+     * 将Map转换为JavaBean对象
      *
-     * @param <T>   javabean类型
+     * @param <T>   JavaBean类型
      * @param map   Map数据
      * @param clazz 目标类型
-     * @return 指定类型的javabean
+     * @return 指定类型的JavaBean
      */
     public static <T> T mapToBean(Map<String, Object> map, Class<T> clazz) {
         T target = getInstance(clazz);
@@ -70,12 +69,12 @@ public class BeanMapUtils {
     }
 
     /**
-     * 将map转换为javabean对象
+     * 将Map转换为JavaBean对象
      *
-     * @param <T>  javabean类型
+     * @param <T>  JavaBean类型
      * @param map  Map数据
-     * @param bean javabean对象
-     * @return 指定类型的javabean
+     * @param bean JavaBean对象
+     * @return 指定类型的JavaBean
      */
     public static <T> T mapToBean(Map<String, Object> map, T bean) {
         if (map != null) {
@@ -86,36 +85,40 @@ public class BeanMapUtils {
     }
 
     /**
-     * 将javabean列表转换为map列表
+     * 将JavaBean列表转换为map列表
      *
-     * @param <T>     javabean类型
-     * @param objList javabean对象列表
+     * @param <T>     JavaBean类型
+     * @param objList JavaBean对象列表
      * @return Map列表
      */
     public static <T> List<Map<String, Object>> objectsToMaps(List<T> objList) {
+        if (objList == null || objList.size() < 1) {
+            return Collections.emptyList();
+        }
+
         List<Map<String, Object>> list = new ArrayList<>();
-        if (objList != null && objList.size() > 0) {
-            for (T obj : objList) {
-                list.add(beanToMap(obj));
-            }
+        for (T obj : objList) {
+            list.add(beanToMap(obj));
         }
         return list;
     }
 
     /**
-     * 将map列表转换为javabean列表
+     * 将Map列表转换为JavaBean列表
      *
-     * @param <T>   javabean类型
+     * @param <T>   JavaBean类型
      * @param maps  Map数据列表
      * @param clazz 期望的Java类型
-     * @return javabean列表
+     * @return JavaBean列表
      */
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
+        if (maps == null || maps.size() < 1) {
+            return Collections.emptyList();
+        }
+
         List<T> list = new ArrayList<>();
-        if (maps != null && maps.size() > 0) {
-            for (Map<String, Object> objMap : maps) {
-                list.add(mapToBean(objMap, clazz));
-            }
+        for (Map<String, Object> objMap : maps) {
+            list.add(mapToBean(objMap, clazz));
         }
         return list;
     }

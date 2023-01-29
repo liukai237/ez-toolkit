@@ -52,7 +52,7 @@ public class JsonUtils {
     /**
      * JSON转换为javabean
      *
-     * @param <T>  javabean类型
+     * @param <T>     javabean类型
      * @param jsonStr json数据
      * @param clazz   期望类型
      * @return 指定类型的javabean
@@ -76,7 +76,7 @@ public class JsonUtils {
     /**
      * JSON转换为javabean列表
      *
-     * @param <T>  javabean类型
+     * @param <T>     javabean类型
      * @param jsonStr json数据
      * @param clazz   期望类型
      * @return 指定类型的javabean列表
@@ -88,7 +88,7 @@ public class JsonUtils {
     /**
      * JSON转换为javabean Set
      *
-     * @param <T>  javabean类型
+     * @param <T>     javabean类型
      * @param jsonStr json数据
      * @param clazz   期望类型
      * @return 指定类型的javabean Set
@@ -100,7 +100,7 @@ public class JsonUtils {
     /**
      * JSON转换为javabean数组
      *
-     * @param <T>  javabean类型
+     * @param <T>     javabean类型
      * @param jsonStr json数据
      * @param clazz   期望类型
      * @return 指定类型的javabean数组

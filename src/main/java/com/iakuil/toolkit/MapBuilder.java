@@ -97,7 +97,7 @@ public class MapBuilder {
         if (obj == null) {
             return true;
         } else if (obj instanceof String) {
-            return  ((String) obj).isEmpty();
+            return ((String) obj).isEmpty();
         } else if (obj instanceof Collection<?>) {
             return ((Collection<?>) obj).isEmpty();
         } else if (obj instanceof Iterable<?>) {

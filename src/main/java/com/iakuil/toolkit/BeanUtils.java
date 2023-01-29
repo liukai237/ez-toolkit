@@ -69,7 +69,7 @@ public class BeanUtils {
         try {
             inst = clazz.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
-            throw new IllegalStateException("InstantiationException", e);
+            throw new IllegalStateException("Occurring an exception during object instancing!", e);
         }
 
         return inst;
