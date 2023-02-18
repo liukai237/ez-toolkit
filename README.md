@@ -6,3 +6,5 @@
 * Java Bean type convertor
 * Parsing JSON by JSONPath
 * Hashids
+* XML to Java Bean
+* Java Bean to XML
