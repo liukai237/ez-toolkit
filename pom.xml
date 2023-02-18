@@ -39,8 +39,9 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
-        <jackson-core.version>2.13.4</jackson-core.version>
-        <jackson-databind.version>2.13.4</jackson-databind.version>
+        <jackson-core.version>2.14.2</jackson-core.version>
+        <jackson-databind.version>2.14.2</jackson-databind.version>
+        <jackson-dataformat-xml.version>2.14.2</jackson-dataformat-xml.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <cglib.version>3.3.0</cglib.version>
@@ -99,6 +100,12 @@
             <groupId>org.hashids</groupId>
             <artifactId>hashids</artifactId>
             <version>${hashids.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson-dataformat-xml.version}</version>
         </dependency>
 
         <dependency>
