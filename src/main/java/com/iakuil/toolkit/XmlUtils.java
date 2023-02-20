@@ -11,6 +11,8 @@ import java.io.InputStream;
 /**
  * 基于Jackson的XML工具类
  *
+ * <p>不支持XPath
+ *
  * @author Kai
  */
 public class XmlUtils {

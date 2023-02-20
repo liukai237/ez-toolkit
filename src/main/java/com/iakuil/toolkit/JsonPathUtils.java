@@ -102,12 +102,12 @@ public class JsonPathUtils {
     /**
      * 读取为Long
      *
-     * @param obj  javabean对象
+     * @param json json数据
      * @param path json path
      * @return Long类型
      */
-    public static Long readLong(String obj, String path) {
-        return read(obj, path, Long.class);
+    public static Long readLong(String json, String path) {
+        return read(json, path, Long.class);
     }
 
     /**
@@ -124,12 +124,12 @@ public class JsonPathUtils {
     /**
      * 读取为Double
      *
-     * @param obj  javabean对象
+     * @param json json数据
      * @param path json path
      * @return Double类型
      */
-    public static Double readDouble(String obj, String path) {
-        return read(obj, path, Double.class);
+    public static Double readDouble(String json, String path) {
+        return read(json, path, Double.class);
     }
 
     /**

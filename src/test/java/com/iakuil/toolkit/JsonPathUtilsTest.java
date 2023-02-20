@@ -106,7 +106,6 @@ public class JsonPathUtilsTest {
         String json = "[{\"name\":\"Tom\",\"age\":11},{\"name\":\"Harry\",\"age\":22}]";
         List<Foo> list = JsonPathUtils.readList(json, "$", Foo.class);
         assertThat(list, hasSize(2));
-        System.out.println();
     }
 
     static class Foo {
