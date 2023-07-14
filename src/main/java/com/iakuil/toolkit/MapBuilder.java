@@ -12,7 +12,7 @@ import java.util.*;
  * @author Kai
  */
 public class MapBuilder {
-    private Map<String, Object> tmp;
+    private final Map<String, Object> tmp;
 
     private MapBuilder() {
         this.tmp = new LinkedHashMap<>();
@@ -28,7 +28,7 @@ public class MapBuilder {
      *
      * @return MapBuilder对象
      */
-    public static MapBuilder init() {
+    public static MapBuilder create() {
         return new MapBuilder();
     }
 
@@ -38,7 +38,7 @@ public class MapBuilder {
      * @param map 初始化Map数据
      * @return MapBuilder对象
      */
-    public static MapBuilder init(Map<String, Object> map) {
+    public static MapBuilder create(Map<String, Object> map) {
         return map == null ? new MapBuilder() : new MapBuilder(map);
     }
 
@@ -59,7 +59,7 @@ public class MapBuilder {
      * @param value Map value
      * @return MapBuilder对象
      */
-    public MapBuilder append(String key, Object value) {
+    public MapBuilder put(String key, Object value) {
         this.tmp.put(key, value);
         return this;
     }

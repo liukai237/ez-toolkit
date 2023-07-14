@@ -11,8 +11,6 @@ import java.io.InputStream;
 /**
  * 基于Jackson的XML工具类
  *
- * <p>不支持XPath
- *
  * @author Kai
  */
 public class XmlUtils {
@@ -25,6 +23,14 @@ public class XmlUtils {
         XML_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
+    /**
+     * JSON转换为javabean
+     *
+     * @param <T>    javabean类型
+     * @param xmlStr XML字符串
+     * @param clazz  期望类型
+     * @return 指定类型的javabean
+     */
     public static <T> T xml2bean(String xmlStr, Class<T> clazz) {
         try {
             return XML_MAPPER.readValue(xmlStr, clazz);
@@ -33,6 +39,14 @@ public class XmlUtils {
         }
     }
 
+    /**
+     * JSON转换为javabean
+     *
+     * @param <T>   javabean类型
+     * @param xmlIs XML流
+     * @param clazz 期望类型
+     * @return 指定类型的javabean
+     */
     public static <T> T xml2bean(InputStream xmlIs, Class<T> clazz) {
         try {
             return XML_MAPPER.readValue(xmlIs, clazz);
@@ -41,6 +55,12 @@ public class XmlUtils {
         }
     }
 
+    /**
+     * javabean转换为XML
+     *
+     * @param obj javabean对象
+     * @return JSON数据
+     */
     public static String bean2Xml(Object obj) {
         try {
             return XML_MAPPER.writeValueAsString(obj);

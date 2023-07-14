@@ -67,8 +67,8 @@ public class BeanUtils {
     private static <T> T getInstance(Class<T> clazz) {
         T inst;
         try {
-            inst = clazz.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
+            inst = clazz.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
             throw new IllegalStateException("Occurring an exception during object instancing!", e);
         }
 

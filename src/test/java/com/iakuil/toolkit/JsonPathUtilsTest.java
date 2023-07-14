@@ -88,7 +88,7 @@ public class JsonPathUtilsTest {
     void should_get_exception_class_when_json_fields_is_redundant() {
         String json = "{\"name\":\"Tom\",\"age\":11,\"addr\":\"China\"}";
         MappingException exception = assertThrows(MappingException.class,
-                () -> JsonPathUtils.read(json, "$", Foo.class));
+            () -> JsonPathUtils.read(json, "$", Foo.class));
         assertTrue(exception.getMessage().contains("Unrecognized field \"addr\""));
     }
 

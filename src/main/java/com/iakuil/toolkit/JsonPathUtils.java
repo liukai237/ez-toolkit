@@ -179,7 +179,7 @@ public class JsonPathUtils {
 
     private static DocumentContext parse(String json) {
         return JsonPath
-                .using(CONFIG)
-                .parse(json);
+            .using(CONFIG)
+            .parse(json);
     }
 }

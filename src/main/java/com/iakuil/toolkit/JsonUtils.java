@@ -2,14 +2,13 @@ package com.iakuil.toolkit;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeBase;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * 基于Jackson的JSON工具类
@@ -74,6 +73,27 @@ public class JsonUtils {
     }
 
     /**
+     * JSON转换为Map
+     *
+     * @param jsonStr json数据
+     * @return Map<String, Object>类型
+     */
+    public static Map<String, Object> json2Map(String jsonStr) {
+        if (jsonStr == null || "".equals(jsonStr)) {
+            return null;
+        }
+
+        Map<String, Object> result;
+        try {
+            result = OBJECT_MAPPER.readValue(jsonStr, new TypeReference<Map<String, Object>>() {
+            });
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Occurring an exception during json parsing!", e);
+        }
+        return result;
+    }
+
+    /**
      * JSON转换为javabean列表
      *
      * @param <T>     javabean类型
@@ -93,7 +113,7 @@ public class JsonUtils {
      * @param clazz   期望类型
      * @return 指定类型的javabean Set
      */
-    public static <T> List<T> json2Set(String jsonStr, Class<T> clazz) {
+    public static <T> Set<T> json2Set(String jsonStr, Class<T> clazz) {
         return readType(jsonStr, OBJECT_MAPPER.getTypeFactory().constructCollectionType(HashSet.class, clazz));
     }
 
@@ -105,7 +125,7 @@ public class JsonUtils {
      * @param clazz   期望类型
      * @return 指定类型的javabean数组
      */
-    public static <T> List<T> json2Array(String jsonStr, Class<T> clazz) {
+    public static <T> T[] json2Array(String jsonStr, Class<T> clazz) {
         return readType(jsonStr, OBJECT_MAPPER.getTypeFactory().constructArrayType(clazz));
     }
 
